@@ -36,7 +36,7 @@ import java.util.logging.Level;
  * /bug notes, and a short rolling record of each watched player's recent actions, written so that as little as
  * possible is lost if the game or the server stops suddenly. See the README for what can't be caught.
  */
-public final class FieldnotesPlugin extends JavaPlugin implements Listener {
+public final class FieldNotesPlugin extends JavaPlugin implements Listener {
     private final Map<UUID, Recent> recent = new ConcurrentHashMap<>();
     private final Map<UUID, String> names = new ConcurrentHashMap<>();
     private final Map<UUID, String> kickReasons = new ConcurrentHashMap<>();
@@ -46,16 +46,19 @@ public final class FieldnotesPlugin extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+        // The name changed case (D194). On a case-sensitive disk, bring the old folder across once.
+        String moved = Migration.copyIfMissing(getDataFolder().toPath().resolveSibling("Fieldnotes"), getDataFolder().toPath());
+        if (moved != null) getLogger().warning(moved);
         saveDefaultConfig();
         max = Math.max(10, Math.min(1000, getConfig().getInt("recent-actions", 80)));
         int flush = Math.max(1, Math.min(60, getConfig().getInt("flush-seconds", 5)));
         dir = getDataPath();
         getServer().getPluginManager().registerEvents(this, this);
-        for (Player p : getServer().getOnlinePlayers()) watch(p, "already online when Fieldnotes started");
+        for (Player p : getServer().getOnlinePlayers()) watch(p, "already online when FieldNotes started");
         getServer().getScheduler().runTaskTimerAsynchronously(this, this::saveChanged, 20L * flush, 20L * flush);
         // Catches a normal JVM exit (a stop, Ctrl-C, a crash that unwinds). A kill -9 or power loss can't be caught;
         // the timer above is what limits the loss then.
-        shutdownHook = new Thread(() -> saveAll("the server process is shutting down"), "Fieldnotes save on exit");
+        shutdownHook = new Thread(() -> saveAll("the server process is shutting down"), "FieldNotes save on exit");
         Runtime.getRuntime().addShutdownHook(shutdownHook);
         getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, e ->
                 e.registrar().register("bug", "Leave a private note for the people running this test.", List.of("fieldnote"), new BugCommand()));

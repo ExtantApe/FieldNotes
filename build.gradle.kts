@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "com.extantape"
-version = "0.1.0"
+version = "0.1.1"
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(25))
@@ -43,7 +43,7 @@ tasks.test {
 }
 
 tasks.jar {
-    archiveBaseName.set("Fieldnotes")
+    archiveBaseName.set("FieldNotes")
 }
 
 // Prints the test classpath, for running test/java's BrowserDemo by hand.

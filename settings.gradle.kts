@@ -1,1 +1,1 @@
-rootProject.name = "Fieldnotes"
+rootProject.name = "FieldNotes"
