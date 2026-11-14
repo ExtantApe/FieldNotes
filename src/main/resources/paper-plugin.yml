@@ -1,9 +1,9 @@
-name: Fieldnotes
+name: FieldNotes
 version: '${version}'
-main: com.extantape.fieldnotes.FieldnotesPlugin
+main: com.extantape.fieldnotes.FieldNotesPlugin
 api-version: '26.1'
 description: Testers type /bug to leave a private note with where they were, and their last moments are saved if the game crashes.
-website: https://github.com/ExtantApe/Fieldnotes
+website: https://github.com/ExtantApe/FieldNotes
 permissions:
   fieldnotes.note:
     description: Use /bug to leave a note.
