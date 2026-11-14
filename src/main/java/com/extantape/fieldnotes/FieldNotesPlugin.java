@@ -46,9 +46,6 @@ public final class FieldNotesPlugin extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-        // The name changed case (D194). On a case-sensitive disk, bring the old folder across once.
-        String moved = Migration.copyIfMissing(getDataFolder().toPath().resolveSibling("Fieldnotes"), getDataFolder().toPath());
-        if (moved != null) getLogger().warning(moved);
         saveDefaultConfig();
         max = Math.max(10, Math.min(1000, getConfig().getInt("recent-actions", 80)));
         int flush = Math.max(1, Math.min(60, getConfig().getInt("flush-seconds", 5)));
