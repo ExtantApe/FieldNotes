@@ -2,7 +2,7 @@
 
 Fieldnotes for Paper: testers type `/bug` to leave a private note with where they were, and their last moments are saved if the game crashes.
 
-**Status:** early, version 0.1.0. Built and unit-tested. Bots on a throwaway Paper 26.2 server test it before a play session; it hasn't been used in a real game client yet.
+**Status:** early, version 0.1.0. Built and unit-tested. Bots on a copy of a real server on Paper 26.2 and 26.3 build 249 (2026-11-14) saved `/bug` notes and recorded how a player left. It hasn't been used in a real game client yet.
 
 ## What it does
 
@@ -41,4 +41,4 @@ Everything is plain text in `plugins/Fieldnotes/`, one line per entry, fields se
 
 ## License
 
-Not decided yet. Private repos carry no license.
+MIT. See [LICENSE](LICENSE).
