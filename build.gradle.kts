@@ -43,7 +43,7 @@ tasks.test {
 }
 
 tasks.jar {
-    archiveBaseName.set("Mapkeeper")
+    archiveBaseName.set("Fieldnotes")
 }
 
 // Prints the test classpath, for running test/java's BrowserDemo by hand.
